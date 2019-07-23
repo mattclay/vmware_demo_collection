@@ -17,7 +17,7 @@ if sys.version_info < (2, 7):
     pytestmark = pytest.mark.skip("vmware_guest Ansible modules require Python >= 2.7")
 
 
-from ansible.modules.cloud.vmware import vmware_guest
+from .....plugins.modules import vmware_guest
 
 curr_dir = os.path.dirname(__file__)
 test_data_file = open(os.path.join(curr_dir, 'test_data', 'test_vmware_guest_with_parameters.json'), 'r')
@@ -42,7 +42,7 @@ def test_vmware_guest_with_parameters(mocker, capfd, testcase):
     if testcase.get('test_ssl_context', None):
         class mocked_ssl:
             pass
-        mocker.patch('ansible.module_utils.vmware.ssl', new=mocked_ssl)
+        mocker.patch('ansible_collections.mattclay.vmware_demo_collection.plugins.module_utils.vmware.ssl', new=mocked_ssl)
 
     with pytest.raises(SystemExit):
         vmware_guest.main()

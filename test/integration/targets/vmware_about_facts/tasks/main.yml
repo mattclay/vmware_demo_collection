@@ -6,7 +6,7 @@
     name: prepare_vmware_tests
 
 - name: Get Details about VMware vCenter Server
-  vmware_about_facts: &vmware_about_data
+  mattclay.vmware_demo_collection.vmware_about_facts: &vmware_about_data
     hostname: "{{ vcenter_hostname }}"
     username: "{{ vcenter_username }}"
     password: "{{ vcenter_password }}"
@@ -33,7 +33,7 @@
     - version
 
 - name: Get Details about VMware vCenter Server in check mode
-  vmware_about_facts:
+  mattclay.vmware_demo_collection.vmware_about_facts:
     <<: *vmware_about_data
   register: about
   check_mode: yes

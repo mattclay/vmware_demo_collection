@@ -75,7 +75,7 @@ about_facts:
 '''
 
 from ansible.module_utils.basic import AnsibleModule
-from ansible.module_utils.vmware import vmware_argument_spec, PyVmomi
+from ansible_collections.mattclay.vmware_demo_collection.plugins.module_utils.vmware import vmware_argument_spec, PyVmomi
 
 
 class VmwareAboutManager(PyVmomi):
