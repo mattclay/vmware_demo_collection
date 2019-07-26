@@ -1,2 +1,0 @@
-plugins/modules/vmware_guest.py E337
-plugins/modules/vmware_guest.py E322
