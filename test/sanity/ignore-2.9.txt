@@ -1,2 +1,4 @@
-plugins/modules/vmware_guest.py validate-modules:E337
+plugins/modules/vmware_about_facts.py validate-modules:E323
 plugins/modules/vmware_guest.py validate-modules:E322
+plugins/modules/vmware_guest.py validate-modules:E323
+plugins/modules/vmware_guest.py validate-modules:E337
