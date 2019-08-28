@@ -1,3 +1,2 @@
 *.pyc
-/test/runner/
-/test/results/
+/tests/output/
