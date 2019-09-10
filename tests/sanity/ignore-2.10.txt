@@ -1,0 +1,4 @@
+plugins/modules/vmware_about_facts.py validate-modules:nonexistent-parameter-documented
+plugins/modules/vmware_guest.py validate-modules:nonexistent-parameter-documented
+plugins/modules/vmware_guest.py validate-modules:parameter-type-not-in-doc
+plugins/modules/vmware_guest.py validate-modules:undocumented-parameter
