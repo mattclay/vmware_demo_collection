@@ -29,6 +29,6 @@ jobs:
     - name: Install Ansible
       run: pip install git+https://github.com/ansible/ansible.git@6c78f02121b1742e63d2b2d66a98a4c760f706ad
     - name: Run sanity tests
-      run: ansible-test sanity --venv -v --color
+      run: ansible-test sanity --docker -v --color
     - name: Run unit tests
-      run: ansible-test units --venv -v --color
+      run: ansible-test units --docker -v --color
