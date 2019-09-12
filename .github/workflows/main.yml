@@ -29,7 +29,7 @@ jobs:
     - name: Set up Python 3.8
       uses: actions/setup-python@v1
       with:
-        python-version: 3.8
+        python-version: 3.8.0b4
     - name: Install Ansible
       run: pip install ansible --pre
     - name: Run sanity tests
