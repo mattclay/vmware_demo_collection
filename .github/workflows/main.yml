@@ -10,10 +10,30 @@ jobs:
       uses: actions/checkout@v1
       with:
         path: ~/.ansible/collections/ansible_collections/mattclay/vmware_demo_collection
+    - name: Set up Python 2.6
+      uses: actions/setup-python@v1
+      with:
+        python-version: 2.6
+    - name: Set up Python 2.7
+      uses: actions/setup-python@v1
+      with:
+        python-version: 2.7
+    - name: Set up Python 3.5
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.5
+    - name: Set up Python 3.6
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.6
     - name: Set up Python 3.7
       uses: actions/setup-python@v1
       with:
         python-version: 3.7
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.8
     - name: Install Ansible
       run: pip install ansible --pre
     - name: Run sanity tests
