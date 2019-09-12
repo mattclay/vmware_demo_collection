@@ -8,7 +8,8 @@ jobs:
     steps:
     - name: Check out code
       uses: actions/checkout@v1
-      path: ~/.ansible/collections/ansible_collections/mattclay/vmware_demo_collection
+      with:
+        path: ~/.ansible/collections/ansible_collections/mattclay/vmware_demo_collection
     - name: Set up Python 3.7
       uses: actions/setup-python@v1
       with:
