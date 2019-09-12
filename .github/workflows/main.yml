@@ -1,0 +1,24 @@
+name: CI
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v1
+      with:
+        path: ansible_collections/mattclay/vmware_demo_collection
+    - name: Set up Python 3.7
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.7
+    - name: Install Ansible 2.9 from GitHub
+      run: pip install git+https://github.com/ansible/ansible.git@82879b03f7c165c45da51d0eb1c07dc8e8a1ce46
+    - name: Run sanity tests
+      run: ansible-test sanity --docker -v --color
+    - name: Run unit tests
+      run: ansible-test units --docker -v --color
+    - name: Run integration tests
+      run: ansible-test integration --docker -v --color --retry-on-error
