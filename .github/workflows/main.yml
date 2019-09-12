@@ -17,4 +17,4 @@ jobs:
     - name: Install Ansible
       run: pip install ansible --pre
     - name: Run sanity tests
-      run: ansible-test sanity --venv -v
+      run: ansible-test sanity --venv -v --color
