@@ -3,6 +3,9 @@ language: python
 services:
   - docker
 
+install:
+  - pip install git+https://github.com/ansible/ansible.git@ef94e3c72a9afb96ba06a66edc0371e35fb3be56 --disable-pip-version-check
+
 script:
   - docker ps
   - docker images
