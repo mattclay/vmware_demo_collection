@@ -17,7 +17,7 @@ jobs:
     - name: Show environment
       run: env
     - name: Install Ansible
-      run: pip install git+https://github.com/ansible/ansible.git@cd4882e2297e78e46b676663d9c899148a16cc4f
+      run: pip install git+https://github.com/ansible/ansible.git@82879b03f7c165c45da51d0eb1c07dc8e8a1ce46
     - name: Run sanity tests
       run: ansible-test sanity --docker -v --color
     - name: Run unit tests
