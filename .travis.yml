@@ -1,5 +1,9 @@
 language: python
 
+branches:
+  only:
+    - master
+
 env:
   COLLECTION_PATH=ansible_collections/mattclay/vmware_demo_collection
 
