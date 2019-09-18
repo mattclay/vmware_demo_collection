@@ -16,3 +16,7 @@ jobs:
         python-version: 3.7
     - name: Show environment
       run: env
+    - name: Show git status
+      run: git status
+    - name: Show last commit
+      run: git show
