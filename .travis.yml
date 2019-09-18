@@ -19,6 +19,6 @@ install:
 script:
   - pwd
   - env
-  - mkdir $TRAVIS_TMPDIR/$COLLECTION_PATH
+  - mkdir -p $TRAVIS_TMPDIR/$COLLECTION_PATH
   - cd $TRAVIS_TMPDIR/$COLLECTION_PATH
   - cp -av $TRAVIS_BUILD_DIR .
