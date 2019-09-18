@@ -1,0 +1,26 @@
+language: python
+
+python:
+  - "3.6"
+
+branches:
+  only:
+    - master
+
+env:
+  COLLECTION_PATH=ansible_collections/mattclay/vmware_demo_collection
+
+services:
+  - docker
+
+install:
+  - pip install git+https://github.com/ansible/ansible.git@ef94e3c72a9afb96ba06a66edc0371e35fb3be56 --disable-pip-version-check
+  - mkdir -p "$TRAVIS_TMPDIR/$COLLECTION_PATH"
+  - cp -aT "$TRAVIS_BUILD_DIR" "$TRAVIS_TMPDIR/$COLLECTION_PATH"
+  - cd "$TRAVIS_TMPDIR/$COLLECTION_PATH"
+
+script:
+  - ansible-test sanity --docker -v --color
+  - ansible-test units --docker -v --color
+  - ansible-test integration --docker -v --color --retry-on-error --python 2.7
+  - ansible-test integration --docker -v --color --retry-on-error --python 3.7
