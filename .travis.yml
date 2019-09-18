@@ -17,7 +17,6 @@ install:
   - pip install git+https://github.com/ansible/ansible.git@ef94e3c72a9afb96ba06a66edc0371e35fb3be56 --disable-pip-version-check
 
 script:
-  - env
   - mkdir -p "$TRAVIS_TMPDIR/$COLLECTION_PATH"
   - cp -Tav "$TRAVIS_BUILD_DIR" "$TRAVIS_TMPDIR/$COLLECTION_PATH"
   - cd "$TRAVIS_TMPDIR/$COLLECTION_PATH"
