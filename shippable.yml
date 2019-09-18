@@ -1,8 +1,5 @@
 language: python
 
-env:
-  COLLECTION_PATH=ansible_collections/mattclay/vmware_demo_collection
-
 branches:
   only:
     - master
@@ -10,6 +7,7 @@ branches:
 build:
   ci:
     - pip install git+https://github.com/ansible/ansible.git@ef94e3c72a9afb96ba06a66edc0371e35fb3be56 --disable-pip-version-check
+    - export COLLECTION_PATH=ansible_collections/mattclay/vmware_demo_collection
     - mkdir -p "/tmp/$COLLECTION_PATH"
     - cp -aT "$SHIPPABLE_BUILD_DIR" "/tmp/$COLLECTION_PATH"
     - cd "/tmp/$COLLECTION_PATH"
