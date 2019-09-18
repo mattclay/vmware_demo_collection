@@ -1,0 +1,10 @@
+language: python
+
+services:
+  - docker
+
+script:
+  - docker ps
+  - docker images
+  - pwd
+  - env
