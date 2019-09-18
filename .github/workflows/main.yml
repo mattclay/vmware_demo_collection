@@ -24,5 +24,3 @@ jobs:
       run: ansible-test units --docker -v --color
     - name: Run integration tests
       run: ansible-test integration --docker -v --color
-
-
