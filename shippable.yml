@@ -13,7 +13,7 @@ build:
     - mkdir -p "/tmp/$COLLECTION_PATH"
     - cp -aT "$SHIPPABLE_BUILD_DIR" "/tmp/$COLLECTION_PATH"
     - cd "/tmp/$COLLECTION_PATH"
-    - ansible-test sanity --docker -v --color
+    - ansible-test sanity --docker -v --color --junit
     - ansible-test units --docker -v --color
     - ansible-test integration --docker -v --color --retry-on-error --python 2.7
     - ansible-test integration --docker -v --color --retry-on-error --python 3.7
