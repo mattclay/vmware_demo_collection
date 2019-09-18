@@ -19,5 +19,7 @@ build:
     - ansible-test integration --docker -v --color --retry-on-error --python 3.7
   always:
     - echo "/tmp/$COLLECTION_PATH/tests/output/junit/"
+    - echo "$SHIPPABLE_BUILD_DIR/shippable/testresults/"
     - ls -l "/tmp/$COLLECTION_PATH/tests/output/junit/"
-    - cp -avT "/tmp/$COLLECTION_PATH/tests/output/junit/" shippable/testresults/
+    - ls -l "$SHIPPABLE_BUILD_DIR/shippable/testresults/"
+    - cp -avT "/tmp/$COLLECTION_PATH/tests/output/junit/" "$SHIPPABLE_BUILD_DIR/shippable/testresults/"
