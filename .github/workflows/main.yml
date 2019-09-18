@@ -6,6 +6,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    - name: Show environment
+      run: env
     - name: Check out code
       uses: actions/checkout@v1
       with:
@@ -22,3 +24,5 @@ jobs:
       run: ansible-test units --docker -v --color
     - name: Run integration tests
       run: ansible-test integration --docker -v --color
+
+
