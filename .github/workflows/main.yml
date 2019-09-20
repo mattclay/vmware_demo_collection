@@ -14,8 +14,8 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: 3.7
-    - name: Install Ansible 2.9 from GitHub
-      run: pip install git+https://github.com/ansible/ansible.git@ef94e3c72a9afb96ba06a66edc0371e35fb3be56 --disable-pip-version-check
+    - name: Install Ansible 2.9.0rc1
+      run: pip install ansible==2.9.0rc1 --disable-pip-version-check
     - name: Run sanity tests
       run: ansible-test sanity --docker -v --color
     - name: Run unit tests
