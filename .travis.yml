@@ -14,7 +14,7 @@ services:
   - docker
 
 install:
-  - pip install git+https://github.com/ansible/ansible.git@ef94e3c72a9afb96ba06a66edc0371e35fb3be56 --disable-pip-version-check
+  - pip install ansible==2.9.0rc1 --disable-pip-version-check
   - mkdir -p "$TRAVIS_TMPDIR/$COLLECTION_PATH"
   - cp -aT "$TRAVIS_BUILD_DIR" "$TRAVIS_TMPDIR/$COLLECTION_PATH"
   - cd "$TRAVIS_TMPDIR/$COLLECTION_PATH"
