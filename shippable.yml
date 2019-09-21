@@ -7,13 +7,14 @@ branches:
 build:
   ci:
     - pip install ansible==2.9.0rc1 --disable-pip-version-check
-    - export COLLECTION_PATH=ansible_collections/mattclay/vmware_demo_collection
-    - mkdir -p "/tmp/$COLLECTION_PATH"
-    - cp -aT "$SHIPPABLE_BUILD_DIR" "/tmp/$COLLECTION_PATH"
-    - cd "/tmp/$COLLECTION_PATH"
-    - ansible-test sanity --docker -v --color --junit
-    - ansible-test units --docker -v --color
-    - ansible-test integration --docker -v --color --retry-on-error --python 2.7
-    - ansible-test integration --docker -v --color --retry-on-error --python 3.7
+    - TEST_DIR=$HOME/ansible_collections/mattclay/vmware_demo_collection
+    - TEST_OPTIONS="--docker --color -v"
+    - mkdir -p $TEST_DIR
+    - cp -aT $SHIPPABLE_BUILD_DIR $TEST_DIR
+    - cd $TEST_DIR
+    - ansible-test sanity $TEST_OPTIONS --junit
+    - ansible-test units $TEST_OPTIONS
+    - ansible-test integration $TEST_OPTIONS --retry-on-error --python 2.7
+    - ansible-test integration $TEST_OPTIONS --retry-on-error --python 3.7
   always:
-    - cp -aT "/tmp/$COLLECTION_PATH/tests/output/junit/" "$SHIPPABLE_BUILD_DIR/shippable/testresults/"
+    - cp -aT $TEST_DIR/tests/output/junit/ $SHIPPABLE_BUILD_DIR/shippable/testresults/
