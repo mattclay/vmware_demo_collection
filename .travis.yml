@@ -7,11 +7,12 @@ branches:
   only:
     - master
 
-env:
-  COLLECTION_PATH=ansible_collections/mattclay/vmware_demo_collection
-
 services:
   - docker
+
+env:
+  COLLECTION_PATH=ansible_collections/mattclay/vmware_demo_collection
+  TEST_OPTIONS=--docker --color -v --truncate 0
 
 install:
   - pip install ansible==2.9.0rc1 --disable-pip-version-check
@@ -20,7 +21,7 @@ install:
   - cd "$TRAVIS_TMPDIR/$COLLECTION_PATH"
 
 script:
-  - ansible-test sanity --docker -v --color --truncate 0
-  - ansible-test units --docker -v --color --truncate 0
-  - ansible-test integration --docker -v --color --retry-on-error --python 2.7 --truncate 0
-  - ansible-test integration --docker -v --color --retry-on-error --python 3.7 --truncate 0
+  - ansible-test sanity $TEST_OPTIONS
+  - ansible-test units $TEST_OPTIONS
+  - ansible-test integration $TEST_OPTIONS --retry-on-error --python 2.7
+  - ansible-test integration $TEST_OPTIONS --retry-on-error --python 3.7
