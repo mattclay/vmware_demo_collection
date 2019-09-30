@@ -8,13 +8,10 @@ build:
   ci:
     - pip install ansible==2.9.0rc1 --disable-pip-version-check
     - TEST_DIR=$HOME/ansible_collections/mattclay/vmware_demo_collection
-    - TEST_OPTIONS="--docker --color -v"
+    - TEST_OPTIONS="--remote rhel/8.0 --color -v"
     - mkdir -p $TEST_DIR
     - cp -aT $SHIPPABLE_BUILD_DIR $TEST_DIR
     - cd $TEST_DIR
-    - ansible-test sanity $TEST_OPTIONS --junit
     - ansible-test units $TEST_OPTIONS
-    - ansible-test integration $TEST_OPTIONS --retry-on-error --python 2.7
-    - ansible-test integration $TEST_OPTIONS --retry-on-error --python 3.7
   always:
     - cp -aT $TEST_DIR/tests/output/junit/ $SHIPPABLE_BUILD_DIR/shippable/testresults/
