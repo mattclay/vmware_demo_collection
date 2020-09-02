@@ -1,0 +1,43 @@
+trigger:
+  - master
+
+pr:
+  - master
+
+pool:
+  vmImage: 'ubuntu-18.04'
+
+steps:
+  - checkout: self
+    path: ansible_collections/mattclay/vmware_demo_collection
+    displayName: Checkout Collection
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.8'
+    displayName: Install Python 3.8
+  - script: PATH="$HOME/.local/bin:$PATH" pip install ansible-base==2.10.0 --disable-pip-version-check --user
+    displayName: Install Ansible
+  - script: PATH="$HOME/.local/bin:$PATH" ansible-galaxy collection install -r requirements.yml -p ../../../
+    displayName: Install Collection Dependencies
+  - script: PATH="$HOME/.local/bin:$PATH" ansible-test sanity --coverage --docker --color -v
+    displayName: Sanity Tests
+  - script: PATH="$HOME/.local/bin:$PATH" ansible-test units --coverage --docker --color -v
+    displayName: Unit Tests
+  - script: PATH="$HOME/.local/bin:$PATH" ansible-test integration --coverage --docker --color --retry-on-error --python 2.7 -v
+    displayName: Integration Tests on Python 2.7
+  - script: PATH="$HOME/.local/bin:$PATH" ansible-test integration --coverage --docker --color --retry-on-error --python 3.7 -v
+    displayName: Integration Tests on Python 3.7
+  - script: PATH="$HOME/.local/bin:$PATH" ansible-test coverage xml --venv --color -v
+    condition: succeededOrFailed()
+    displayName: Generate Coverage Report
+  - task: PublishTestResults@2
+    condition: succeededOrFailed()
+    inputs:
+      testResultsFiles: 'tests/output/junit/*.xml'
+    displayName: Publish Test Results
+  - task: PublishCodeCoverageResults@1
+    condition: succeededOrFailed()
+    inputs:
+      codeCoverageTool: Cobertura
+      summaryFileLocation: 'tests/output/reports/coverage.xml'
+    displayName: Publish Coverage Results
