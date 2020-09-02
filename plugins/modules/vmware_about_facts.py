@@ -28,7 +28,7 @@ notes:
 requirements:
 - python >= 2.6
 - PyVmomi
-extends_documentation_fragment: vmware.documentation
+extends_documentation_fragment: community.vmware.vmware.documentation
 '''
 
 EXAMPLES = r'''
