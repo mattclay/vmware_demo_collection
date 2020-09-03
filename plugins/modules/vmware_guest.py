@@ -368,7 +368,7 @@ options:
     - Specify convert disk type while cloning template or virtual machine.
     choices: [ thin, thick, eagerzeroedthick ]
     version_added: '2.8'
-extends_documentation_fragment: vmware.documentation
+extends_documentation_fragment: community.vmware.vmware.documentation
 '''
 
 EXAMPLES = r'''

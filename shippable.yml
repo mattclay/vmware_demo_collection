@@ -6,12 +6,13 @@ branches:
 
 build:
   ci:
-    - pip install ansible==2.9.0rc1 --disable-pip-version-check
+    - pip install ansible-base==2.10.0 --disable-pip-version-check
     - TEST_DIR=$HOME/ansible_collections/mattclay/vmware_demo_collection
     - TEST_OPTIONS="--docker --color -v"
     - mkdir -p $TEST_DIR
     - cp -aT $SHIPPABLE_BUILD_DIR $TEST_DIR
     - cd $TEST_DIR
+    - ansible-galaxy collection install -r requirements.yml -p ../../../
     - ansible-test sanity $TEST_OPTIONS --junit
     - ansible-test units $TEST_OPTIONS
     - ansible-test integration $TEST_OPTIONS --retry-on-error --python 2.7
