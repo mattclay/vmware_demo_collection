@@ -15,10 +15,11 @@ env:
   TEST_OPTIONS=--docker --color -v --truncate 0
 
 install:
-  - pip install ansible==2.9.0rc1 --disable-pip-version-check
+  - pip install ansible-base==2.10.0 --disable-pip-version-check
   - mkdir -p "$TRAVIS_TMPDIR/$COLLECTION_PATH"
   - cp -aT "$TRAVIS_BUILD_DIR" "$TRAVIS_TMPDIR/$COLLECTION_PATH"
   - cd "$TRAVIS_TMPDIR/$COLLECTION_PATH"
+  - ansible-galaxy collection install -r requirements.yml -p ../../../
 
 script:
   - ansible-test sanity $TEST_OPTIONS
